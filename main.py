@@ -6,13 +6,7 @@ import numpy as np
 from io import BytesIO
 
 
-app = FastAPI()
 
-@app.get("/corr")
-async def ocr(img_path : str):
-     test = Image.open(img_path)
-     chiffre , score , font = OCR.resultat_final(test)
-     return  {"result":chiffre,"score":score,"font":font}
 
 
 
@@ -177,7 +171,13 @@ def ajouter_contour(image):
   return new_image
 
 
-  
+app = FastAPI()
+
+@app.get("/corr")
+async def ocr(img_path : str):
+     test = Image.open(img_path)
+     chiffre , score , font = OCR.resultat_final(test)
+     return  {"result":chiffre,"score":score,"font":font}
 
 
 
